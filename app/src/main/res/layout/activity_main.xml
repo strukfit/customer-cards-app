@@ -46,17 +46,17 @@
         
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_height="@dimen/_37sdp"
             android:layout_marginStart="@dimen/_12sdp"
             android:fontFamily="@font/montserrat_semibold"
             android:hint="@string/text_search"
-            android:background=""
+            android:background="@null"
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="text"
             android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorTertiary"/>
+            android:textColorHint="@color/colorTertiary" />
         
     </LinearLayout>
 
