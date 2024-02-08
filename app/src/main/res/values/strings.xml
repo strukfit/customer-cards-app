@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Customer Cards App</string>
+    <string name="text_search">Поиск</string>
+    <string name="title_activity_create_card">CreateCard</string>
+    <string name="card_name">ФИО</string>
+    <string name="card_phone_number">Номер телефона</string>
+    <string name="card_date_of_birth">Дата рождения</string>
 </resources>
