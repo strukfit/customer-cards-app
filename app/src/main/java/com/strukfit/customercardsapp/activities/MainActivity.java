@@ -8,17 +8,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.strukfit.customercardsapp.R;
+import com.strukfit.customercardsapp.adapters.CardsAdapter;
 import com.strukfit.customercardsapp.database.CardsDatabase;
 import com.strukfit.customercardsapp.entities.Card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_ADD_CARD = 1;
+
+    private RecyclerView cardsRecyclerView;
+    private List<Card> cardList;
+    private CardsAdapter cardsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
                 );
             }
         });
+
+        cardsRecyclerView = findViewById(R.id.cardsRecyclerView);
+        cardsRecyclerView.setLayoutManager(
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        );
+
+        cardList = new ArrayList<>();
+        cardsAdapter = new CardsAdapter(cardList);
+        cardsRecyclerView.setAdapter(cardsAdapter);
 
         getCards();
     }
@@ -53,9 +71,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<Card> cards) {
                 super.onPostExecute(cards);
-                Log.d("CARDS", cards.toString());
+                if(cardList.isEmpty()) {
+                    cardList.addAll(cards);
+                    cardsAdapter.notifyDataSetChanged();
+                } else {
+                    cardList.add(0, cards.get(0));
+                    cardsAdapter.notifyItemInserted(0);
+                }
+                cardsRecyclerView.smoothScrollToPosition(0);
             }
         }
         new GetCardsTask().execute();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_ADD_CARD && resultCode == RESULT_OK) {
+            getCards();
+        }
     }
 }
