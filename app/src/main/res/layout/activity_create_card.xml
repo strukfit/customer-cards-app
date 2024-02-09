@@ -6,17 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".CreateCardActivity">
+    tools:context=".activities.CreateCardActivity">
 
     <LinearLayout
-        android:id="@+id/scrollView2"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/_40sdp"
         android:background="@color/colorPrimary"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/_10sdp"
-        app:layout_anchor="@+id/scrollView2"
+        app:layout_anchor="@+id/linearLayout2"
         app:layout_anchorGravity="center">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,17 +51,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imageBack" />
 
+            <TextView
+                android:id="@+id/textNewCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:includeFontPadding="false"
+                android:text="@string/card_new_customer"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintTop_toBottomOf="@id/imageBack" />
+
             <EditText
-                android:id="@+id/inputCardTitle"
+                android:id="@+id/inputCardName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:background="@drawable/background_card"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/montserrat_medium"
                 android:hint="@string/card_name"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
@@ -70,7 +84,7 @@
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorTertiary"
                 android:textSize="@dimen/_16ssp"
-                app:layout_constraintTop_toBottomOf="@id/imageBack" />
+                app:layout_constraintTop_toBottomOf="@id/textNewCustomer" />
 
             <EditText
                 android:id="@+id/inputCardPhoneNumber"
@@ -82,7 +96,7 @@
                 android:background="@drawable/background_card"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/montserrat_medium"
                 android:hint="@string/card_phone_number"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
@@ -91,10 +105,10 @@
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorTertiary"
                 android:textSize="@dimen/_16ssp"
-                app:layout_constraintTop_toBottomOf="@id/inputCardTitle" />
+                app:layout_constraintTop_toBottomOf="@id/inputCardName" />
 
             <EditText
-                android:id="@+id/inputCardDayOfBirth"
+                android:id="@+id/inputCardDateOfBirth"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -103,12 +117,12 @@
                 android:background="@drawable/background_card"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/montserrat_medium"
                 android:hint="@string/card_date_of_birth"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
-                android:inputType="phone"
+                android:inputType="date"
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorTertiary"
                 android:textSize="@dimen/_16ssp"
