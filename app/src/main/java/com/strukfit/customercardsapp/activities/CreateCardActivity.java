@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.strukfit.customercardsapp.R;
-import com.strukfit.customercardsapp.dao.CardDao;
 import com.strukfit.customercardsapp.database.CardsDatabase;
 import com.strukfit.customercardsapp.entities.Card;
 
@@ -89,6 +88,7 @@ public class CreateCardActivity extends AppCompatActivity {
             protected void onPostExecute(Void unused) {
                 super.onPostExecute(unused);
                 Intent intent = new Intent();
+                intent.putExtra("updatedCard", card);
                 setResult(RESULT_OK, intent);
                 finish();
             }

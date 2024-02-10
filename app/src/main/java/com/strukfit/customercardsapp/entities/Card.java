@@ -1,6 +1,5 @@
 package com.strukfit.customercardsapp.entities;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -23,7 +22,7 @@ public class Card implements Serializable {
     private String dateOfBirth;
 
     @ColumnInfo(name = "card_text")
-    private String cardText;
+    private String cardNotes;
 
     public int getId() {
         return id;
@@ -57,17 +56,12 @@ public class Card implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getCardText() {
-        return cardText;
+    public String getCardNotes() {
+        return cardNotes;
     }
 
-    public void setCardText(String cardText) {
-        this.cardText = cardText;
+    public void setCardNotes(String cardNotes) {
+        this.cardNotes = cardNotes;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return name + " " + phoneNumber + " " + dateOfBirth + "\n";
-    }
 }

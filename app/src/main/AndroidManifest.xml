@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CustomerCardsApp"
         tools:targetApi="31">
+
+        <activity android:name=".activities.ViewCardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+
         <activity android:name=".activities.CreateCardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>

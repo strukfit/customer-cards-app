@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.strukfit.customercardsapp.R;
+import com.strukfit.customercardsapp.activities.MainActivity;
 import com.strukfit.customercardsapp.entities.Card;
 import com.strukfit.customercardsapp.listeners.CardsListener;
 

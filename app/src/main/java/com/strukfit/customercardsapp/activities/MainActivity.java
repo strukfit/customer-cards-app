@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
     public static final int REQUEST_CODE_ADD_CARD = 1;
     public static final int REQUEST_CODE_UPDATE_CARD = 2;
     public static final int REQUEST_CODE_SHOW_CARDS = 3;
+    public static final int REQUEST_CODE_VIEW_CARDS = 4;
 
     private RecyclerView cardsRecyclerView;
     private List<Card> cardList;
@@ -67,7 +68,12 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
 
     @Override
     public void onCardClicked(Card card, int position) {
-
+        cardClickedposition = position;
+        Intent intent = new Intent(getApplicationContext(), ViewCardActivity.class);
+        intent.putExtra("isView", true);
+        intent.putExtra("card", card);
+        intent.putExtra("position", cardClickedposition);
+        startActivityForResult(intent, REQUEST_CODE_VIEW_CARDS);
     }
 
     @Override
@@ -122,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
                     cardList.remove(cardClickedposition);
                     cardList.add(cardClickedposition, cards.get(cardClickedposition));
                     cardsAdapter.notifyItemChanged(cardClickedposition);
+                } else if(requestCode == REQUEST_CODE_VIEW_CARDS) {
+                    cardList.remove(cardClickedposition);
+                    cardList.add(cardClickedposition, cards.get(cardClickedposition));
+                    cardsAdapter.notifyItemChanged(cardClickedposition);
                 }
             }
         }
@@ -136,6 +146,10 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
         } else if(requestCode == REQUEST_CODE_UPDATE_CARD && resultCode == RESULT_OK) {
             if(data != null) {
                 getCards(REQUEST_CODE_UPDATE_CARD);
+            }
+        } else if(requestCode == REQUEST_CODE_VIEW_CARDS && resultCode == RESULT_OK) {
+            if(data != null) {
+                getCards(REQUEST_CODE_VIEW_CARDS);
             }
         }
     }
