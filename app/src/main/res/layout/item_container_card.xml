@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/_12sdp"
-    android:layout_marginTop="@dimen/_12sdp"
+    android:layout_marginTop="@dimen/_8sdp"
     android:background="@drawable/background_card"
     android:backgroundTint="@color/colorSecondary">
 
@@ -24,6 +24,7 @@
         android:textSize="@dimen/_12sdp" />
 
     <ImageView
+        android:id="@+id/imageMore"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_marginStart="@dimen/_5sdp"

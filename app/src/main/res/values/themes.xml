@@ -11,4 +11,5 @@
     </style>
 
     <style name="Theme.CustomerCardsApp" parent="Base.Theme.CustomerCardsApp" />
+
 </resources>

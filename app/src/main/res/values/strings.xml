@@ -6,4 +6,7 @@
     <string name="card_phone_number">Номер телефона</string>
     <string name="card_date_of_birth">Дата рождения</string>
     <string name="card_new_customer">Новый клиент</string>
+    <string name="menu_update">Изменить</string>
+    <string name="menu_delete">Удалить</string>
+    <string name="card_notes_type_note_here">Введите заметку здесь...</string>
 </resources>

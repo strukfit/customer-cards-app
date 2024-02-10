@@ -2,10 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/create_card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorSecondary"
     tools:context=".activities.CreateCardActivity">
 
     <LinearLayout
@@ -51,7 +51,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imageBack" />
 
-            <TextView
+            <!--TextView
                 android:id="@+id/textNewCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -63,14 +63,14 @@
                 android:text="@string/card_new_customer"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_20ssp"
-                app:layout_constraintTop_toBottomOf="@id/imageBack" />
+                app:layout_constraintTop_toBottomOf="@id/imageBack" /-->
 
             <EditText
                 android:id="@+id/inputCardName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_37sdp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:background="@drawable/background_card"
                 android:paddingStart="@dimen/_10sdp"
@@ -84,7 +84,7 @@
                 android:textColor="@color/colorBlack"
                 android:textColorHint="@color/colorTertiary"
                 android:textSize="@dimen/_16ssp"
-                app:layout_constraintTop_toBottomOf="@id/textNewCustomer" />
+                app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
             <EditText
                 android:id="@+id/inputCardPhoneNumber"
