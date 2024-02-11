@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
                 int itemId = item.getItemId();
                 if (itemId == R.id.menu_update) {
                     EditText inputSearch = findViewById(R.id.inputSearch);
-                    if(!inputSearch.getText().toString().isEmpty()) {
+                    if(inputSearch != null && !inputSearch.getText().toString().isEmpty()) {
                         inputSearch.setText("");
                     }
                     cardClickedPosition = position;

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,8 +28,8 @@ public class CreateCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_card);
 
-        ImageView imageBack = findViewById(R.id.imageBack);
-        imageBack.setOnClickListener(new View.OnClickListener() {
+        TextView textCancel = findViewById(R.id.textCancel);
+        textCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -39,8 +40,8 @@ public class CreateCardActivity extends AppCompatActivity {
         inputCardPhoneNumber = findViewById(R.id.inputCardPhoneNumber);
         inputCardDateOfBirth = findViewById(R.id.inputCardDateOfBirth);
 
-        ImageView imageDone = findViewById(R.id.imageDone);
-        imageDone.setOnClickListener(new View.OnClickListener() {
+        TextView textSaveCard = findViewById(R.id.textSaveCard);
+        textSaveCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveCard();

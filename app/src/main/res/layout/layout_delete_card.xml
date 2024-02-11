@@ -89,5 +89,4 @@
         app:layout_constraintEnd_toStartOf="@id/textDeleteCard"
         app:layout_constraintTop_toBottomOf="@id/textDeleteCardMessage"/>
 
-    
 </androidx.constraintlayout.widget.ConstraintLayout>
