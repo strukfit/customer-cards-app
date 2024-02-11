@@ -1,17 +1,26 @@
 package com.strukfit.customercardsapp.activities;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -36,7 +45,11 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
     private List<Card> cardList;
     private CardsAdapter cardsAdapter;
 
-    private int cardClickedposition = -1;
+    private int cardClickedPosition = -1;
+
+    protected AlertDialog dialogDeleteCard;
+
+    protected boolean isCardDeleted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +77,39 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
         cardsRecyclerView.setAdapter(cardsAdapter);
 
         getCards(REQUEST_CODE_SHOW_CARDS);
+
+        EditText inputSearch = findViewById(R.id.inputSearch);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                cardsAdapter.cancelTimer();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!cardList.isEmpty()) {
+                    cardsAdapter.searchCards(s.toString());
+                }
+            }
+        });
     }
 
     @Override
     public void onCardClicked(Card card, int position) {
-        cardClickedposition = position;
+        EditText inputSearch = findViewById(R.id.inputSearch);
+        if(!inputSearch.getText().toString().isEmpty()) {
+            inputSearch.setText("");
+        }
+        cardClickedPosition = position;
         Intent intent = new Intent(getApplicationContext(), ViewCardActivity.class);
         intent.putExtra("isView", true);
         intent.putExtra("card", card);
-        intent.putExtra("position", cardClickedposition);
+        intent.putExtra("position", cardClickedPosition);
         startActivityForResult(intent, REQUEST_CODE_VIEW_CARDS);
     }
 
@@ -86,13 +123,19 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
             public boolean onMenuItemClick(MenuItem item) {
                 int itemId = item.getItemId();
                 if (itemId == R.id.menu_update) {
-                    cardClickedposition = position;
+                    EditText inputSearch = findViewById(R.id.inputSearch);
+                    if(!inputSearch.getText().toString().isEmpty()) {
+                        inputSearch.setText("");
+                    }
+                    cardClickedPosition = position;
                     Intent intent = new Intent(getApplicationContext(), CreateCardActivity.class);
                     intent.putExtra("isUpdate", true);
                     intent.putExtra("card", card);
                     startActivityForResult(intent, REQUEST_CODE_UPDATE_CARD);
                     return true;
                 } else if (itemId == R.id.menu_delete) {
+                    cardClickedPosition = position;
+                    showDeleteCardDialog(card);
                     return true;
                 } else {
                     return false;
@@ -101,6 +144,73 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
         });
 
         popupMenu.show();
+    }
+
+    protected void showDeleteCardDialog(Card card) {
+        if(dialogDeleteCard == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            View view = LayoutInflater.from(this).inflate(
+                    R.layout.layout_delete_card,
+                    (ViewGroup) findViewById(R.id.layoutDeleteCardContainer)
+            );
+            builder.setView(view);
+            dialogDeleteCard = builder.create();
+            if(dialogDeleteCard.getWindow() != null) {
+                dialogDeleteCard.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+
+            Class<? extends Activity> currentActivityClass = getClass();
+
+            view.findViewById(R.id.textDeleteCard).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    @SuppressLint("StaticFieldLeak")
+                    class DeleteCard extends AsyncTask<Void, Void, Void> {
+
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            CardsDatabase.getCardsDatabase(getApplicationContext()).cardDao()
+                                    .deleteCard(card);
+                            return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Void unused) {
+                            super.onPostExecute(unused);
+                            Intent intent = new Intent();
+                            setResult(RESULT_OK, intent);
+
+                            if(currentActivityClass == ViewCardActivity.class) {
+                                intent.putExtra("isCardDeleted", true);
+                                finish();
+                            } else {
+                                EditText inputSearch = findViewById(R.id.inputSearch);
+                                if(!inputSearch.getText().toString().isEmpty()) {
+                                    inputSearch.setText("");
+                                }
+                                dialogDeleteCard.dismiss();
+                            }
+                        }
+                    }
+                    new DeleteCard().execute();
+                    isCardDeleted = true;
+                    if (currentActivityClass == MainActivity.class) {
+                        getCards(-1);
+                    }
+                }
+            });
+
+            view.findViewById(R.id.textCancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialogDeleteCard.dismiss();
+                    isCardDeleted = false;
+                }
+            });
+        }
+
+        dialogDeleteCard.show();
+
     }
 
     private void getCards(final int requestCode) {
@@ -125,13 +235,22 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
                     cardsAdapter.notifyItemInserted(0);
                     cardsRecyclerView.smoothScrollToPosition(0);
                 } else if(requestCode == REQUEST_CODE_UPDATE_CARD) {
-                    cardList.remove(cardClickedposition);
-                    cardList.add(cardClickedposition, cards.get(cardClickedposition));
-                    cardsAdapter.notifyItemChanged(cardClickedposition);
+                    cardList.remove(cardClickedPosition);
+                    cardList.add(cardClickedPosition, cards.get(cardClickedPosition));
+                    cardsAdapter.notifyItemChanged(cardClickedPosition);
                 } else if(requestCode == REQUEST_CODE_VIEW_CARDS) {
-                    cardList.remove(cardClickedposition);
-                    cardList.add(cardClickedposition, cards.get(cardClickedposition));
-                    cardsAdapter.notifyItemChanged(cardClickedposition);
+                    cardList.remove(cardClickedPosition);
+                    if(isCardDeleted) {
+                        cardsAdapter.notifyItemRemoved(cardClickedPosition);
+                        isCardDeleted = false;
+                    } else {
+                        cardList.add(cardClickedPosition, cards.get(cardClickedPosition));
+                        cardsAdapter.notifyItemChanged(cardClickedPosition);
+                    }
+                } else if(isCardDeleted) {
+                    cardList.remove(cardClickedPosition);
+                    cardsAdapter.notifyItemRemoved(cardClickedPosition);
+                    isCardDeleted = false;
                 }
             }
         }
@@ -149,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
             }
         } else if(requestCode == REQUEST_CODE_VIEW_CARDS && resultCode == RESULT_OK) {
             if(data != null) {
+                isCardDeleted = data.getBooleanExtra("isCardDeleted", false);
                 getCards(REQUEST_CODE_VIEW_CARDS);
             }
         }

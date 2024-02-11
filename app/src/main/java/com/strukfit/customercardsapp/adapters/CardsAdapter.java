@@ -1,6 +1,8 @@
 package com.strukfit.customercardsapp.adapters;
 
 import android.annotation.SuppressLint;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +18,22 @@ import com.strukfit.customercardsapp.activities.MainActivity;
 import com.strukfit.customercardsapp.entities.Card;
 import com.strukfit.customercardsapp.listeners.CardsListener;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
     private List<Card> cards;
     private CardsListener cardsListener;
+    private Timer timer;
+    private List<Card> cardsSource;
 
     public CardsAdapter(List<Card> cards, CardsListener cardsListener) {
         this.cards = cards;
         this.cardsListener = cardsListener;
+        cardsSource = cards;
     }
 
     @NonNull
@@ -57,6 +65,14 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
                 cardsListener.onCardClicked(cards.get(position), position);
             }
         });
+
+        holder.layoutCard.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                cardsListener.showPopupMenu(v, cards.get(position), position);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -86,4 +102,37 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
             textName.setText(card.getName());
         }
     }
+
+    public void searchCards(final String searchKeyword){
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(searchKeyword.trim().isEmpty()){
+                    cards = cardsSource;
+                } else {
+                    ArrayList<Card> temp = new ArrayList<>();
+                    for(Card card : cardsSource) {
+                        if(card.getName().toLowerCase().contains(searchKeyword.toLowerCase())) {
+                            temp.add(card);
+                        }
+                    }
+                    cards = temp;
+                }
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                   @Override
+                   public void run(){
+                       notifyDataSetChanged();
+                   }
+                });
+            }
+        }, 500);
+    }
+
+    public void cancelTimer(){
+        if(timer != null){
+            timer.cancel();
+        }
+    }
+
 }

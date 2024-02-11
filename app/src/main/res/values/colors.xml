@@ -10,4 +10,5 @@
     <color name="colorTertiaryDark">#A1A6B1</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorDelete">#A83E32</color>
 </resources>

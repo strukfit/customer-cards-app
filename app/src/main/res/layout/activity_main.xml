@@ -46,6 +46,7 @@
             app:tint="@color/colorTertiary"/>
         
         <EditText
+            android:id="@+id/inputSearch"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_37sdp"
             android:layout_marginStart="@dimen/_12sdp"

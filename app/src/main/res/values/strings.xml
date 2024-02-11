@@ -9,4 +9,8 @@
     <string name="menu_update">Изменить</string>
     <string name="menu_delete">Удалить</string>
     <string name="card_notes_type_note_here">Введите заметку здесь...</string>
+    <string name="delete_card">Удалить карточку</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_card_message">Вы уверенны, что хотите удалить карточку?</string>
+    <string name="cancel">Отмена</string>
 </resources>
