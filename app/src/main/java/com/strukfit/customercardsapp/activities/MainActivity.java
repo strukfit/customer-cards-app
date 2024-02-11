@@ -32,8 +32,12 @@ import com.strukfit.customercardsapp.database.CardsDatabase;
 import com.strukfit.customercardsapp.entities.Card;
 import com.strukfit.customercardsapp.listeners.CardsListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements CardsListener {
 
@@ -115,6 +119,15 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
                 }
             }
         });
+
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        String dateString = dateFormat.format(currentDate);
+
+
+
     }
 
     @Override

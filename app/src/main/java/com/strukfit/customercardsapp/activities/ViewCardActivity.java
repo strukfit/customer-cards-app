@@ -1,7 +1,12 @@
 package com.strukfit.customercardsapp.activities;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +44,8 @@ public class ViewCardActivity extends MainActivity {
         imageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                saveCard();
+                //onBackPressed();
             }
         });
 
@@ -55,6 +61,36 @@ public class ViewCardActivity extends MainActivity {
         textPhoneNumber = findViewById(R.id.textPhoneNumber);
         textDateOfBirth = findViewById(R.id.textDateOfBirth);
         inputCardNotes = findViewById(R.id.inputCardNotes);
+
+        textPhoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(textPhoneNumber != null) {
+                    String phoneNumber = textPhoneNumber.getText().toString();
+                    if(!phoneNumber.isEmpty()) {
+                        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                        startActivity(dialIntent);
+                    }
+                }
+            }
+        });
+
+        textPhoneNumber.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(textPhoneNumber != null) {
+                    String phoneNumber = textPhoneNumber.getText().toString();
+                    if(!phoneNumber.isEmpty()) {
+                        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clipData = ClipData.newPlainText("Phone Number", phoneNumber);
+                        clipboardManager.setPrimaryClip(clipData);
+                        Toast.makeText(ViewCardActivity.this, "Номер телефона скопирован в буфер обмена.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                return true;
+            }
+        });
 
         ScrollView scrollView = findViewById(R.id.scrollView);
         scrollView.post(new Runnable() {
@@ -81,6 +117,7 @@ public class ViewCardActivity extends MainActivity {
     private void setViewCard() {
         textName.setText(alreadyAvailableCard.getName());
         textPhoneNumber.setText(alreadyAvailableCard.getPhoneNumber());
+        textPhoneNumber.setPaintFlags(textPhoneNumber.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         textDateOfBirth.setText(alreadyAvailableCard.getDateOfBirth());
         inputCardNotes.setText(alreadyAvailableCard.getCardNotes());
     }

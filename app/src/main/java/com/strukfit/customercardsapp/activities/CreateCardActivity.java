@@ -17,6 +17,9 @@ import com.strukfit.customercardsapp.R;
 import com.strukfit.customercardsapp.database.CardsDatabase;
 import com.strukfit.customercardsapp.entities.Card;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CreateCardActivity extends AppCompatActivity {
 
     private EditText inputCardName, inputCardPhoneNumber, inputCardDateOfBirth;
@@ -66,10 +69,24 @@ public class CreateCardActivity extends AppCompatActivity {
             return;
         }
 
+        String cardPhoneNumber = inputCardPhoneNumber.getText().toString();
+
+        if(!isValidPhoneNumber(cardPhoneNumber)) {
+            Toast.makeText(this, "Введите номер телефона в формате '+XXXXXXXXXX'. Номер телефона должен состоять не менее чем из 7 цифр!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String cardDateOfBirth = inputCardDateOfBirth.getText().toString();
+
+        if(!isValidDate(cardDateOfBirth)) {
+            Toast.makeText(this, "Введите дату рождения в формате 'дд.мм.гггг'", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         final Card card = new Card();
         card.setName(inputCardName.getText().toString());
-        card.setPhoneNumber(inputCardPhoneNumber.getText().toString());
-        card.setDateOfBirth(inputCardDateOfBirth.getText().toString());
+        card.setPhoneNumber(cardPhoneNumber);
+        card.setDateOfBirth(cardDateOfBirth);
 
         if(alreadyAvailableCard != null) {
             card.setId(alreadyAvailableCard.getId());
@@ -95,5 +112,25 @@ public class CreateCardActivity extends AppCompatActivity {
             }
         }
         new SaveCardTask().execute();
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        String phonePattern = "(^\\+(?:[0-9] ?){6,14}[0-9]$)?";
+
+        Pattern pattern = Pattern.compile(phonePattern);
+
+        Matcher matcher = pattern.matcher(phoneNumber);
+
+        return matcher.matches();
+    }
+
+    public static boolean isValidDate(String date) {
+        String datePattern = "(^(0[1-9]|[12][0-9]|3[01])\\.(0[1-9]|1[012])\\.\\d{4}$)?";
+
+        Pattern pattern = Pattern.compile(datePattern);
+
+        Matcher matcher = pattern.matcher(date);
+
+        return matcher.matches();
     }
 }
