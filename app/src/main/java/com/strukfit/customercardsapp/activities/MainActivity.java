@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -79,6 +80,17 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
         getCards(REQUEST_CODE_SHOW_CARDS);
 
         EditText inputSearch = findViewById(R.id.inputSearch);
+
+        ImageView imageSearchClear = findViewById(R.id.imageSearchClear);
+        imageSearchClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!inputSearch.getText().toString().isEmpty()) {
+                    inputSearch.setText("");
+                }
+            }
+        });
+
         inputSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -94,6 +106,12 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
             public void afterTextChanged(Editable s) {
                 if(!cardList.isEmpty()) {
                     cardsAdapter.searchCards(s.toString());
+                }
+
+                if (s.length() > 0) {
+                    imageSearchClear.setVisibility(View.VISIBLE);
+                } else {
+                    imageSearchClear.setVisibility(View.GONE);
                 }
             }
         });
