@@ -38,68 +38,181 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/imageBack" /-->
 
-    <EditText
-        android:id="@+id/inputCardName"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCardName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/background_text_field"
-        android:padding="@dimen/_10sdp"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/card_name"
-        android:imeOptions="actionDone"
-        android:importantForAutofill="no"
-        android:includeFontPadding="false"
-        android:inputType="text"
-        android:textColor="@color/colorBlack"
-        android:textColorHint="@color/colorTertiary"
-        android:textSize="@dimen/_14ssp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
 
-    <EditText
-        android:id="@+id/inputCardPhoneNumber"
+        <EditText
+            android:id="@+id/inputCardName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="@string/card_name"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorTertiary"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageInputCardNameClear"/>
+
+        <ImageView
+            android:id="@+id/imageInputCardNameClear"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:padding="@dimen/_3sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_search_clear"
+            app:tint="@color/colorTertiary"
+            android:background="@drawable/background_search_clear_button"
+            app:layout_constraintStart_toEndOf="@id/inputCardName"
+            app:layout_constraintTop_toTopOf="@id/inputCardName"
+            app:layout_constraintBottom_toBottomOf="@id/inputCardName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCardPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/background_text_field"
+        app:layout_constraintTop_toBottomOf="@id/layoutCardName"  >
+
+        <EditText
+            android:id="@+id/inputCardPhoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="@string/card_phone_number"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="phone"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorTertiary"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageInputCardPhoneNumberClear" />
+
+        <ImageView
+            android:id="@+id/imageInputCardPhoneNumberClear"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:padding="@dimen/_3sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_search_clear"
+            app:tint="@color/colorTertiary"
+            android:background="@drawable/background_search_clear_button"
+            app:layout_constraintStart_toEndOf="@id/inputCardPhoneNumber"
+            app:layout_constraintTop_toTopOf="@id/inputCardPhoneNumber"
+            app:layout_constraintBottom_toBottomOf="@id/inputCardPhoneNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textPhoneNumberTemplate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:text="+XXXXXXXXXX"
+        android:textColor="@color/colorTertiary"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintTop_toBottomOf="@id/layoutCardPhoneNumber" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCardDateOfBirth"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/background_text_field"
-        android:padding="@dimen/_10sdp"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/card_phone_number"
-        android:imeOptions="actionDone"
-        android:importantForAutofill="no"
-        android:includeFontPadding="false"
-        android:inputType="phone"
-        android:textColor="@color/colorBlack"
-        android:textColorHint="@color/colorTertiary"
-        android:textSize="@dimen/_14ssp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputCardName" />
+        app:layout_constraintTop_toBottomOf="@id/textPhoneNumberTemplate" >
 
-    <EditText
-        android:id="@+id/inputCardDateOfBirth"
+        <EditText
+            android:id="@+id/inputCardDateOfBirth"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
+            android:hint="@string/card_date_of_birth"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="date"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorTertiary"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageInputCardDateOfBirthClear" />
+
+        <ImageView
+            android:id="@+id/imageInputCardDateOfBirthClear"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:padding="@dimen/_3sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_search_clear"
+            app:tint="@color/colorTertiary"
+            android:background="@drawable/background_search_clear_button"
+            app:layout_constraintStart_toEndOf="@id/inputCardDateOfBirth"
+            app:layout_constraintTop_toTopOf="@id/inputCardDateOfBirth"
+            app:layout_constraintBottom_toBottomOf="@id/inputCardDateOfBirth"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textDateOfBirthTemplate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:background="@drawable/background_text_field"
-        android:padding="@dimen/_10sdp"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/card_date_of_birth"
-        android:imeOptions="actionDone"
-        android:importantForAutofill="no"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="center_vertical"
         android:includeFontPadding="false"
-        android:inputType="date"
-        android:textColor="@color/colorBlack"
-        android:textColorHint="@color/colorTertiary"
-        android:textSize="@dimen/_14ssp"
-        app:layout_constraintTop_toBottomOf="@id/inputCardPhoneNumber" />
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:text="дд.мм.гггг"
+        android:textColor="@color/colorTertiary"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintTop_toBottomOf="@id/layoutCardDateOfBirth" />
+
 
     <TextView
         android:id="@+id/textSaveCard"
@@ -117,7 +230,7 @@
         android:textSize="@dimen/_11ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputCardDateOfBirth" />
+        app:layout_constraintTop_toBottomOf="@id/layoutCardDateOfBirth" />
 
     <TextView
         android:id="@+id/textCancel"
@@ -135,6 +248,6 @@
         android:textSize="@dimen/_11ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/textSaveCard"
-        app:layout_constraintTop_toBottomOf="@id/inputCardDateOfBirth"/>
+        app:layout_constraintTop_toBottomOf="@id/layoutCardDateOfBirth" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

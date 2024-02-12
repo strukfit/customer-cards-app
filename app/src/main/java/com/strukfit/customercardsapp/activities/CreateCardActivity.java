@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,6 +44,84 @@ public class CreateCardActivity extends AppCompatActivity {
         inputCardName = findViewById(R.id.inputCardName);
         inputCardPhoneNumber = findViewById(R.id.inputCardPhoneNumber);
         inputCardDateOfBirth = findViewById(R.id.inputCardDateOfBirth);
+
+        ImageView imageInputCardNameClear = findViewById(R.id.imageInputCardNameClear);
+        imageInputCardNameClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!inputCardName.getText().toString().isEmpty()) {
+                    inputCardName.setText("");
+                }
+            }
+        });
+
+        ImageView imageInputCardPhoneNumberClear = findViewById(R.id.imageInputCardPhoneNumberClear);
+        imageInputCardPhoneNumberClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!inputCardPhoneNumber.getText().toString().isEmpty()) {
+                    inputCardPhoneNumber.setText("");
+                }
+            }
+        });
+
+        ImageView imageInputCardDateOfBirthClear = findViewById(R.id.imageInputCardDateOfBirthClear);
+        imageInputCardDateOfBirthClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!inputCardDateOfBirth.getText().toString().isEmpty()) {
+                    inputCardDateOfBirth.setText("");
+                }
+            }
+        });
+
+        inputCardName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    imageInputCardNameClear.setVisibility(View.VISIBLE);
+                } else {
+                    imageInputCardNameClear.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        inputCardPhoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    imageInputCardPhoneNumberClear.setVisibility(View.VISIBLE);
+                } else {
+                    imageInputCardPhoneNumberClear.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        inputCardDateOfBirth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    imageInputCardDateOfBirthClear.setVisibility(View.VISIBLE);
+                } else {
+                    imageInputCardDateOfBirthClear.setVisibility(View.GONE);
+                }
+            }
+        });
 
         TextView textSaveCard = findViewById(R.id.textSaveCard);
         textSaveCard.setOnClickListener(new View.OnClickListener() {
