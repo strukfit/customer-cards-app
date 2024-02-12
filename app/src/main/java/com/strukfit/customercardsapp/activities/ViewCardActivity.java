@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.strukfit.customercardsapp.R;
 import com.strukfit.customercardsapp.database.CardsDatabase;
@@ -54,6 +55,16 @@ public class ViewCardActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                 showPopupMenu(v, alreadyAvailableCard, (int) getIntent().getSerializableExtra("position"));
+            }
+        });
+
+        ConstraintLayout layoutCardDetails = findViewById(R.id.layoutCardDetails);
+
+        layoutCardDetails.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                showPopupMenu(v, alreadyAvailableCard, (int) getIntent().getSerializableExtra("position"));
+                return true;
             }
         });
 

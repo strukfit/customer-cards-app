@@ -52,25 +52,10 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
     public void onBindViewHolder(@NonNull CardViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.setCard(cards.get(position));
 
-        holder.imageMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardsListener.showPopupMenu(v, cards.get(position), position);
-            }
-        });
-
         holder.layoutCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cardsListener.onCardClicked(cards.get(position), position);
-            }
-        });
-
-        holder.layoutCard.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                cardsListener.showPopupMenu(v, cards.get(position), position);
-                return true;
             }
         });
     }
@@ -120,10 +105,10 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
                     cards = temp;
                 }
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
-                   @Override
-                   public void run(){
-                       notifyDataSetChanged();
-                   }
+                    @Override
+                    public void run(){
+                        notifyDataSetChanged();
+                    }
                 });
             }
         }, 500);

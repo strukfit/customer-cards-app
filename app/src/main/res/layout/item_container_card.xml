@@ -12,9 +12,10 @@
 
     <TextView
         android:id="@+id/textName"
-        android:layout_width="325dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginBottom="@dimen/_15sdp"
         android:paddingTop="@dimen/_5sdp"
@@ -23,7 +24,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:textSize="@dimen/_12sdp" />
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/imageMore"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
@@ -32,6 +33,6 @@
         android:padding="@dimen/_5sdp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_more"
-        app:tint="@color/colorTertiary" />
+        app:tint="@color/colorTertiary" /-->
 
 </LinearLayout>
