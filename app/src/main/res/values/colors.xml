@@ -8,6 +8,7 @@
     <color name="colorSecondaryDark">#2F2D2F</color>
     <color name="colorTertiary">#A1A6B1</color>
     <color name="colorTertiaryDark">#A1A6B1</color>
+    <color name="colorQuickActionsLine">#E8EAED</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorDelete">#A83E32</color>

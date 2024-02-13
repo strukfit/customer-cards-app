@@ -8,7 +8,7 @@
     android:layout_marginStart="@dimen/_12sdp"
     android:layout_marginTop="@dimen/_8sdp"
     android:background="@drawable/background_card"
-    android:backgroundTint="@color/colorSecondary">
+    style="@style/CardBackground" >
 
     <TextView
         android:id="@+id/textName"
@@ -20,7 +20,7 @@
         android:layout_marginBottom="@dimen/_15sdp"
         android:paddingTop="@dimen/_5sdp"
         android:paddingBottom="@dimen/_5sdp"
-        android:textColor="@color/colorBlack"
+        style="@style/TextColor"
         android:fontFamily="@font/montserrat_medium"
         android:textSize="@dimen/_12sdp" />
 

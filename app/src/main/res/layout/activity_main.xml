@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    style="@style/ScreenBackground"
     tools:context=".activities.MainActivity">
 
     <!--TextView
@@ -31,6 +31,7 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:background="@drawable/background_search"
+        style="@style/CardBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/_10sdp"
@@ -43,7 +44,7 @@
             android:layout_height="@dimen/_20sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search"
-            app:tint="@color/colorTertiary"
+            style="@style/iconColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -61,8 +62,7 @@
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="text"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorTertiary"
+            style="@style/EditTextColor"
             app:layout_constraintStart_toEndOf="@id/imageSearch"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -76,14 +76,14 @@
             android:padding="@dimen/_3sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search_clear"
-            app:tint="@color/colorTertiary"
+            style="@style/iconColor"
             android:background="@drawable/background_search_clear_button"
             app:layout_constraintStart_toEndOf="@id/inputSearch"
             app:layout_constraintTop_toTopOf="@id/imageSearch"
             app:layout_constraintBottom_toBottomOf="@id/imageSearch"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone" />
-        
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -97,9 +97,44 @@
         android:paddingStart="0dp"
         android:paddingEnd="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layoutQuickActions"
         app:layout_constraintTop_toBottomOf="@id/layoutSearch"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        style="@style/QuickActionsLineColor"
+        app:layout_constraintBottom_toTopOf="@id/layoutQuickActions"/>
+
+    <LinearLayout
+        android:id="@+id/layoutQuickActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/CardBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        
+        <ImageView
+            android:id="@+id/imageChangeTheme"
+            android:layout_width="@dimen/_21sdp"
+            android:layout_height="@dimen/_21sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_moon"
+            style="@style/iconColor" />
+
+        <ImageView
+            android:id="@+id/imageBirthdays"
+            android:layout_width="@dimen/_21sdp"
+            android:layout_height="@dimen/_21sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_birthday"
+            style="@style/iconColor" />
+
+    </LinearLayout>
+    
     <ImageView
         android:id="@+id/imageAddCardMain"
         android:layout_width="@dimen/_40sdp"
@@ -109,7 +144,7 @@
         android:contentDescription="@string/app_name"
         android:padding="@dimen/_14sdp"
         android:src="@drawable/ic_add"
-        app:tint="@color/colorWhite"
+        style="@style/AddButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="@dimen/_20sdp"/>

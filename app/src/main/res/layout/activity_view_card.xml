@@ -5,7 +5,7 @@
     android:id="@+id/activityViewCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    style="@style/ScreenBackground"
     tools:context=".activities.CreateCardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/colorBlack" />
+            style="@style/BackButtonStyle" />
 
         <ImageView
             android:id="@+id/imageDone"
@@ -38,10 +38,11 @@
             android:contentDescription="@string/app_name"
             android:padding="@dimen/_4sdp"
             android:src="@drawable/ic_done"
-            app:tint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@id/imageBack"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imageBack" />
+            app:layout_constraintTop_toTopOf="@id/imageBack"
+            app:layout_constraintVertical_bias="0.0"
+            style="@style/DoneButtonStyle" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutCardDetails"
@@ -52,6 +53,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintTop_toBottomOf="@id/imageBack"
             android:background="@drawable/background_card"
+            style="@style/CardBackground"
             android:orientation="vertical">
 
             <TextView
@@ -60,8 +62,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:textColor="@color/colorBlack"
+                style="@style/TextColor"
                 android:fontFamily="@font/montserrat_medium"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -74,7 +77,7 @@
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_more"
-                app:tint="@color/colorTertiary"
+                style="@style/iconColor"
                 app:layout_constraintStart_toEndOf="@id/textName"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -83,7 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:textColor="@color/colorAccent"
+                style="@style/PhoneNumberTextColor"
+                android:textSize="@dimen/_12sdp"
                 android:fontFamily="@font/montserrat_medium"
                 app:layout_constraintTop_toBottomOf="@id/textName"
                 app:layout_constraintStart_toStartOf="@id/textName"/>
@@ -94,7 +98,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_12sdp"
-                android:textColor="@color/colorBlack"
+                style="@style/TextColor"
+                android:textSize="@dimen/_12sdp"
                 android:fontFamily="@font/montserrat_medium"
                 app:layout_constraintTop_toBottomOf="@id/textPhoneNumber"
                 app:layout_constraintStart_toStartOf="@id/textPhoneNumber"
@@ -115,7 +120,7 @@
         android:padding="@dimen/_12sdp"
         android:animateLayoutChanges="true"
         android:background="@drawable/background_card"
-        android:backgroundTint="@color/colorSecondary"
+        style="@style/CardBackground"
         app:layout_constraintTop_toBottomOf="@id/layoutNotesTop"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -131,8 +136,8 @@
             android:includeFontPadding="false"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorTertiary" />
+            android:textSize="@dimen/_13sdp"
+            style="@style/EditTextColor" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

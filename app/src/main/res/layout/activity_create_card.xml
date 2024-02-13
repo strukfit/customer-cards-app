@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:layout_margin="@dimen/_10sdp"
     android:background="@drawable/background_card"
-    android:backgroundTint="@color/colorSecondary"
+    style="@style/CardBackground"
     tools:context=".activities.CreateCardActivity">
 
     <!--ImageView
@@ -59,9 +59,8 @@
             android:includeFontPadding="false"
             android:inputType="text"
             android:padding="@dimen/_10sdp"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorTertiary"
-            android:backgroundTint="@color/colorPrimary"
+            style="@style/EditTextColor"
+            android:background="@null"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imageInputCardNameClear"/>
@@ -106,9 +105,8 @@
             android:includeFontPadding="false"
             android:inputType="phone"
             android:padding="@dimen/_10sdp"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorTertiary"
-            android:backgroundTint="@color/colorPrimary"
+            style="@style/EditTextColor"
+            android:background="@null"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imageInputCardPhoneNumberClear" />
@@ -144,8 +142,8 @@
         android:includeFontPadding="false"
         android:paddingStart="@dimen/_8sdp"
         android:paddingEnd="@dimen/_8sdp"
-        android:text="+XXXXXXXXXX"
-        android:textColor="@color/colorTertiary"
+        android:text="@string/phone_template"
+        style="@style/TextColorTertiary"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintTop_toBottomOf="@id/layoutCardPhoneNumber" />
 
@@ -170,9 +168,8 @@
             android:includeFontPadding="false"
             android:inputType="date"
             android:padding="@dimen/_10sdp"
-            android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorTertiary"
-            android:backgroundTint="@color/colorPrimary"
+            style="@style/EditTextColor"
+            android:background="@null"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imageInputCardDateOfBirthClear" />
@@ -208,11 +205,10 @@
         android:includeFontPadding="false"
         android:paddingStart="@dimen/_8sdp"
         android:paddingEnd="@dimen/_8sdp"
-        android:text="дд.мм.гггг"
-        android:textColor="@color/colorTertiary"
+        android:text="@string/date_template"
+        style="@style/TextColorTertiary"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintTop_toBottomOf="@id/layoutCardDateOfBirth" />
-
 
     <TextView
         android:id="@+id/textSaveCard"
@@ -224,9 +220,9 @@
         android:fontFamily="@font/montserrat_medium"
         android:includeFontPadding="false"
         android:padding="@dimen/_8sdp"
-        android:text="Сохранить"
+        android:text="@string/save"
         android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
+        style="@style/TextColorAccent"
         android:textSize="@dimen/_11ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -237,17 +233,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_14sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:fontFamily="@font/montserrat_medium"
         android:includeFontPadding="false"
         android:padding="@dimen/_8sdp"
         android:text="@string/cancel"
         android:textAllCaps="true"
-        android:textColor="@color/colorBlack"
+        style="@style/TextColor"
         android:textSize="@dimen/_11ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/textSaveCard"
-        app:layout_constraintTop_toBottomOf="@id/layoutCardDateOfBirth" />
+        app:layout_constraintTop_toBottomOf="@id/layoutCardDateOfBirth"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

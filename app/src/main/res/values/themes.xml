@@ -8,6 +8,7 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorTertiary">@color/colorTertiary</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="textFillColor">@color/colorBlack</item>
     </style>
 
     <style name="DialogActivityTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -18,7 +19,60 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
+    
+    <style name="ScreenBackground"><item name="android:background">@color/colorPrimary</item></style>
+    <style name="CardBackground"><item name="android:background">@color/colorSecondary</item></style>
+    <style name="TextColor"><item name="android:textColor">@color/colorBlack</item></style>
+    <style name="TextColorAccent"><item name="android:textColor">@color/colorAccent</item></style>
+    <style name="TextColorTertiary"><item name="android:textColor">@color/colorTertiary</item></style>
+    <style name="PhoneNumberTextColor"><item name="android:textColor">@color/colorAccent</item> </style>
+    <style name="TextDelete"><item name="android:textColor">@color/colorDelete</item></style>
+    <style name="iconColor"><item name="android:tint">@color/colorTertiary</item></style>
+    <style name="EditTextColor">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorTertiary
+        </item>
+    </style>
+    <style name="TextBirthday">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorBlack
+        </item>
+    </style>
+    <style name="TintBlack"><item name="android:tint">@color/colorBlack</item></style>
+    <style name="TintWhite"><item name="android:tint">@color/colorWhite</item></style>
+    <style name="TintAccent"><item name="android:tint">@color/colorAccent</item></style>
+    <style name="QuickActionsLineColor"><item name="android:tint">@color/colorQuickActionsLine</item></style>
 
-    <style name="Theme.CustomerCardsApp" parent="Base.Theme.CustomerCardsApp" />
+    <style name="AddButtonStyle">
+        <item name="android:shape">oval</item>
+        <item name="tint">@color/colorWhite</item>
+        <item name="android:backgroundTint">@color/colorAccent</item>
+    </style>
+
+    <style name="BackButtonStyle">
+        <item name="android:shape">oval</item>
+        <item name="android:tint">@color/colorWhite</item>
+        <item name="android:strokeWidth">@dimen/_2sdp</item>
+        <item name="android:backgroundTint">@color/colorTertiary</item>
+    </style>
+
+    <style name="DoneButtonStyle">
+        <item name="android:shape">oval</item>
+        <item name="android:tint">@color/colorWhite</item>
+        <item name="android:strokeWidth">@dimen/_2sdp</item>
+        <item name="android:backgroundTint">@color/colorAccent</item>
+    </style>
+
+    <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="PopupMenuStyleDark" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
 
 </resources>
