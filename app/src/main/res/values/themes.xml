@@ -19,7 +19,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
-    
+
     <style name="ScreenBackground"><item name="android:background">@color/colorPrimary</item></style>
     <style name="CardBackground"><item name="android:background">@color/colorSecondary</item></style>
     <style name="TextColor"><item name="android:textColor">@color/colorBlack</item></style>
@@ -41,7 +41,7 @@
     <style name="TintBlack"><item name="android:tint">@color/colorBlack</item></style>
     <style name="TintWhite"><item name="android:tint">@color/colorWhite</item></style>
     <style name="TintAccent"><item name="android:tint">@color/colorAccent</item></style>
-    <style name="QuickActionsLineColor"><item name="android:tint">@color/colorQuickActionsLine</item></style>
+    <style name="QuickActionsLineColor"><item name="android:background">@color/colorQuickActionsLine</item></style>
 
     <style name="AddButtonStyle">
         <item name="android:shape">oval</item>

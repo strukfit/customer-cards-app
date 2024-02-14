@@ -29,7 +29,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -389,8 +388,6 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("isAlarmSet", true);
             editor.apply();
-
-            Log.d("aboba", "Alarm set at time: " + String.valueOf(calendar.getTime()));
         }
     }
 

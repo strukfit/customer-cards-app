@@ -9,26 +9,20 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.strukfit.customercardsapp.R;
 import com.strukfit.customercardsapp.database.CardsDatabase;
 import com.strukfit.customercardsapp.entities.Card;
-import com.strukfit.customercardsapp.listeners.CardsListener;
 
-import java.util.List;
 
 public class ViewCardActivity extends MainActivity {
     private TextView textName, textPhoneNumber, textDateOfBirth;

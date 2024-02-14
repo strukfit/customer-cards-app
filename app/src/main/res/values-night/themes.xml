@@ -41,7 +41,7 @@
     <style name="TintBlack"><item name="android:tint">@color/colorWhite</item></style>
     <style name="TintWhite"><item name="android:tint">@color/colorBlack</item></style>
     <style name="TintAccent"><item name="android:tint">@color/colorAccentDark</item></style>
-    <style name="QuickActionsLineColor"><item name="android:tint">@color/colorQuickActionsLine</item></style>
+    <style name="QuickActionsLineColor"><item name="android:background">@color/colorQuickActionsLineDark</item></style>
 
     <style name="AddButtonStyle">
         <item name="android:shape">oval</item>
