@@ -27,11 +27,15 @@ public class CreateCardActivity extends AppCompatActivity {
     private EditText inputCardName, inputCardPhoneNumber, inputCardDateOfBirth;
 
     private Card alreadyAvailableCard;
+    boolean dateFirstDotAdded, dateSecondDotAdded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_card);
+
+        dateFirstDotAdded = false;
+        dateSecondDotAdded = false;
 
         TextView textCancel = findViewById(R.id.textCancel);
         textCancel.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +123,27 @@ public class CreateCardActivity extends AppCompatActivity {
                     imageInputCardDateOfBirthClear.setVisibility(View.VISIBLE);
                 } else {
                     imageInputCardDateOfBirthClear.setVisibility(View.GONE);
+                }
+
+                String text = s.toString();
+                if (text.length() == 5 && dateSecondDotAdded) {
+                    dateSecondDotAdded = false;
+                    return;
+                }
+                if (text.length() == 2 && dateFirstDotAdded) {
+                    dateFirstDotAdded = false;
+                    return;
+                }
+                if (text.length() == 2) {
+                    if (!text.endsWith(".")) {
+                        inputCardDateOfBirth.append(".");
+                        dateFirstDotAdded = true;
+                    }
+                } else if (text.length() == 5) {
+                    if (!text.endsWith(".")) {
+                        inputCardDateOfBirth.append(".");
+                        dateSecondDotAdded = true;
+                    }
                 }
             }
         });

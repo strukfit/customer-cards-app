@@ -74,12 +74,14 @@
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_more"
                 style="@style/iconColor"
                 app:layout_constraintStart_toEndOf="@id/textName"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/textPhoneNumber"

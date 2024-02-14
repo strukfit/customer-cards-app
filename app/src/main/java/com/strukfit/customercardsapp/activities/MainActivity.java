@@ -13,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -148,8 +147,12 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
         ImageView imageChangeTheme = findViewById(R.id.imageChangeTheme);
 
         if(nightMode) {
-            imageChangeTheme.setImageResource(R.drawable.ic_sun);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            imageChangeTheme.setImageResource(R.drawable.ic_sun);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            imageChangeTheme.setImageResource(R.drawable.ic_moon);
         }
 
         imageChangeTheme.setOnClickListener(new View.OnClickListener() {
@@ -161,11 +164,12 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     imageChangeTheme.setImageResource(R.drawable.ic_sun);
-
                 }
 
+                nightMode = !nightMode;
+
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("nightmode", !nightMode);
+                editor.putBoolean("nightmode", nightMode);
                 editor.apply();
 
                 recreate();
