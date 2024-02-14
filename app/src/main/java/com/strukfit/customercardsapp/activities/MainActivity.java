@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
     private CardsAdapter cardsAdapter;
     private View birthdaysDialogView;
 
+    private EditText inputSearch;
+
     private int cardClickedPosition = -1;
 
     protected AlertDialog dialogDeleteCard;
@@ -96,15 +98,13 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
 
         getCards(REQUEST_CODE_SHOW_CARDS);
 
-        EditText inputSearch = findViewById(R.id.inputSearch);
+        inputSearch = findViewById(R.id.inputSearch);
 
         ImageView imageSearchClear = findViewById(R.id.imageSearchClear);
         imageSearchClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!inputSearch.getText().toString().isEmpty()) {
-                    inputSearch.setText("");
-                }
+                clearSearch();
             }
         });
 
@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
         imageChangeTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearSearch();
                 if (nightMode) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     imageChangeTheme.setImageResource(R.drawable.ic_moon);
@@ -190,10 +191,7 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
 
     @Override
     public void onCardClicked(Card card, int position) {
-        EditText inputSearch = findViewById(R.id.inputSearch);
-        if(!inputSearch.getText().toString().isEmpty()) {
-            inputSearch.setText("");
-        }
+        clearSearch();
         cardClickedPosition = position;
         Intent intent = new Intent(getApplicationContext(), ViewCardActivity.class);
         intent.putExtra("isView", true);
@@ -221,10 +219,7 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
             public boolean onMenuItemClick(MenuItem item) {
                 int itemId = item.getItemId();
                 if (itemId == R.id.menu_update) {
-                    EditText inputSearch = findViewById(R.id.inputSearch);
-                    if(inputSearch != null && !inputSearch.getText().toString().isEmpty()) {
-                        inputSearch.setText("");
-                    }
+                    clearSearch();
                     cardClickedPosition = position;
                     Intent intent = new Intent(getApplicationContext(), CreateCardActivity.class);
                     intent.putExtra("isUpdate", true);
@@ -282,10 +277,7 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
                                 intent.putExtra("isCardDeleted", true);
                                 finish();
                             } else {
-                                EditText inputSearch = findViewById(R.id.inputSearch);
-                                if(!inputSearch.getText().toString().isEmpty()) {
-                                    inputSearch.setText("");
-                                }
+                                clearSearch();
                                 dialogDeleteCard.dismiss();
                             }
                         }
@@ -419,6 +411,12 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
 //            Log.d("aboba", "Next alarm clock info: " + alarmManager.getNextAlarmClock());
 //        }
 //    }
+
+    protected void clearSearch() {
+        if(!inputSearch.getText().toString().isEmpty()) {
+            inputSearch.setText("");
+        }
+    }
 
     private void getCards(final int requestCode) {
         @SuppressLint("StaticFieldLeak")
