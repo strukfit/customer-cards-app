@@ -74,6 +74,8 @@ public class CreateCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!inputCardDateOfBirth.getText().toString().isEmpty()) {
+                    dateFirstDotAdded = false;
+                    dateSecondDotAdded = false;
                     inputCardDateOfBirth.setText("");
                 }
             }

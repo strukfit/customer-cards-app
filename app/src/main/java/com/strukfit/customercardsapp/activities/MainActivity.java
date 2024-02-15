@@ -324,9 +324,12 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
 
         String birthdayPeople = peopleWhoHaveBirthday();
 
-        if(!birthdayPeople.isEmpty()) {
+        TextView textBirthdays = birthdaysDialogView.findViewById(R.id.textBirthdays);
+
+        if(birthdayPeople.isEmpty()) {
+            textBirthdays.setText("");
+        } else {
             birthdayPeople = "Сегодня день рождения празднуют:\n" + birthdayPeople;
-            TextView textBirthdays = birthdaysDialogView.findViewById(R.id.textBirthdays);
             textBirthdays.setText(birthdayPeople);
         }
 
