@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -373,13 +375,20 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
 
-            long delay = calendar.getTimeInMillis() - System.currentTimeMillis();
+            long currentTime = System.currentTimeMillis();
+            long targetTime = calendar.getTimeInMillis();
+
+            long delay = targetTime >= currentTime ? targetTime - currentTime : TimeUnit.DAYS.toMillis(1) + targetTime - currentTime;
 
             PeriodicWorkRequest dailyWork = new PeriodicWorkRequest.Builder(BirthdaysCheckWorker.class, 1, TimeUnit.DAYS)
                     .setInitialDelay(delay, TimeUnit.MILLISECONDS)
                     .build();
 
-            WorkManager.getInstance(getApplicationContext()).enqueue(dailyWork);
+            WorkManager.getInstance(getApplicationContext()).enqueueUniquePeriodicWork(
+                    "BirthdaysCheckWorker",
+                    ExistingPeriodicWorkPolicy.REPLACE,
+                    dailyWork
+            );
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("isAlarmSet", true);
