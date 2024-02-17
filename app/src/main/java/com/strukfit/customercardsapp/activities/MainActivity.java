@@ -399,31 +399,6 @@ public class MainActivity extends AppCompatActivity implements CardsListener {
         }
     }
 
-//    private void setAlarm() {
-//        SharedPreferences sharedPreferences = this.getSharedPreferences("AlarmPrefs", Context.MODE_PRIVATE);
-//
-//        if(!sharedPreferences.getBoolean("isAlarmSet", false)) {
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.setTimeInMillis(System.currentTimeMillis());
-//            calendar.set(Calendar.HOUR_OF_DAY, 20);
-//            calendar.set(Calendar.MINUTE, 14);
-//            calendar.set(Calendar.SECOND, 0);
-//
-//            AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-//
-//            Intent intent = new Intent(this, AlarmReceiver.class);
-//            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 10000, pendingIntent);
-//
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.putBoolean("isAlarmSet", true);
-//            editor.apply();
-//
-//            Log.d("aboba", "Alarm set at time: " + String.valueOf(calendar.getTime()));
-//            Log.d("aboba", "Next alarm clock info: " + alarmManager.getNextAlarmClock());
-//        }
-//    }
-
     protected void clearSearch() {
         if(!inputSearch.getText().toString().isEmpty()) {
             inputSearch.setText("");
